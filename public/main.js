@@ -455,7 +455,7 @@ botonesCategorias.forEach(boton => {
     
         botonesCategorias.forEach(boton => boton.classList.remove("active"));
         e.currentTarget.classList.add("active");
-        
+
         if (e.currentTarget.id != "todos") {
        
             const productoCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id);

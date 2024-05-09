@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="{{ asset('style1.css') }}">
     <title>Document</title>
 </head>
 <body>
@@ -40,6 +40,14 @@
                             <input type="text" class="form-control" id="titulo" name="titulo" value="{{ old('titulo') }}" required>
                         </div>
 
+                        <select name="categoria_id" id="categoria">
+                            @forelse ($categorias as $categoria)
+                                <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                            @empty
+                                <option value="">No hay categorias</option>
+                            @endforelse
+                        </select>
+
                         <div class="form-group">
                             <label for="imagen">Imagen:</label>
                             <input type="file" class="form-control-file" id="imagen" name="imagen" required>
@@ -47,7 +55,7 @@
 
                         <div class="form-group">
                             <label for="precio">Precio:</label>
-                            <input type="number" class="form-control" id="precio" name="precio" value="{{ old('precio') }}" required>
+                            <input type="number" step="0.01" class="form-control" id="precio" name="precio" value="{{ old('precio') }}" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Agregar Producto</button>

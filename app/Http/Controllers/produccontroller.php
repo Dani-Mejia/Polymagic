@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class produccontroller extends Controller
@@ -12,9 +13,9 @@ class produccontroller extends Controller
      */
     public function index()
     {
-
+        $categorias = Categoria::all();
         $productos = Producto::all();
-        return view('productos.crear', compact('productos'));
+        return view('productos.crear', compact('productos', 'categorias'));
     }
 
     /**

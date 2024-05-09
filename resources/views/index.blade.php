@@ -29,41 +29,49 @@
                         <button id="todos" class="boton_menu boton_categoria active"><i class="bi bi-hand-index-thumb-fill"></i>Todos los productos</button>
                     </li>
                     <li>
-                        <button id="aretes" class="boton_menu boton_categoria"><i class="bi bi-hand-index-thumb"></i>Aretes</button>
+                        <button id="Aretes" class="boton_menu boton_categoria"><i class="bi bi-hand-index-thumb"></i>Aretes</button>
                     </li>
                     <li>
-                        <button id="collares" class="boton_menu boton_categoria"><i class="bi bi-hand-index-thumb"></i>Collares</button>
+                        <button id="Collares" class="boton_menu boton_categoria"><i class="bi bi-hand-index-thumb"></i>Collares</button>
                     </li>
                     <li>
-                        <button id="pulseras" class="boton_menu boton_categoria"><i class="bi bi-hand-index-thumb"></i>Pulseras</button>
+                        <button id="Pulseras" class="boton_menu boton_categoria"><i class="bi bi-hand-index-thumb"></i>Pulseras</button>
                     </li>
                     <li>
-                        <button id="llaveros" class="boton_menu boton_categoria"><i class="bi bi-hand-index-thumb"></i>Llaveros</button>
+                        <button id="Llaveros" class="boton_menu boton_categoria"><i class="bi bi-hand-index-thumb"></i>Llaveros</button>
                     </li>
                     <li>
-                        <button id="anillos" class="boton_menu boton_categoria"><i class="bi bi-hand-index-thumb"></i>Anillos</button>
+                        <button id="Anillos" class="boton_menu boton_categoria"><i class="bi bi-hand-index-thumb"></i>Anillos</button>
                     </li>
                     <li>
-                        <button id="porta_mask" class="boton_menu boton_categoria"><i class="bi bi-hand-index-thumb"></i>Porta mascarillas</button>
+                        <button id="Porta mascarillas" class="boton_menu boton_categoria"><i class="bi bi-hand-index-thumb"></i>Porta mascarillas</button>
                     </li>
                     <li>
-                        <a class="boton_menu boton_carrito" href="carrito.html">
-                            <i class="bi bi-cart-fill"></i>Carrito <span id="numerito" class="numerito">0</span>
+                        <a class="boton_menu boton_carrito" href="{{ route('cart') }}">
+                            <i class="bi bi-cart-fill"></i>Carrito <span id="numerito" class="numerito">
+                                @php
+                                    $totalProductos = 0;
+                                    foreach ($cart as $producto) {
+                                        $totalProductos += $producto['cantidad'];
+                                    }
+                                    echo $totalProductos;
+                                @endphp
+                            </span>
                         </a>
                     </li>
                 </ul>
             </nav>
             @if (Auth::check())
-            <p>{{ Auth::user()->name }}</p>
+            <p class="User">{{ Auth::user()->name }}</p>
             <form action="{{ route('logout') }}" method="POST" class="block">
                 @csrf
-                <button type="submit" class="w-full h-full p-4">
+                <button type="submit" class="cerrar-sesion">
                     Cerrar Sesión
                 </button>
             </form>
             @else
-            <a href="{{route('login')}}">
-                 ya tienes una cuenta
+            <a class="cuentaE" href="{{route('login')}}">
+                 Ya tienes una cuenta
             </a>
             @endif
             <footer>
@@ -73,13 +81,19 @@
         <main>
             <h2 class="Titulo_productos" id="titulo-principal">Todos los Productos</h2>
             <div id="contenedor_productos" class="Contenedor_productos">
-                @foreach ($productos as $producto)
-                <div class="producto">
-                    <img class="imagen_producto" src="Imagenes/Collares/Collar de perlas con caritas feliz.jpeg" alt="Collar perlas Carita feliz">
+                @foreach ($productos as $producto)                <div class="producto card-producto" data-categoria="{{ $producto->categoria->nombre }}">
+                    <img class="imagen_producto" src="{{ asset('imagenes/productos/' . $producto->imagen) }}" alt="Collar perlas Carita feliz">
                             <div class="producto_detalles">
                                 <h3 class="titulo_producto">{{ $producto->titulo }}</h3>
                                 <p class="precio producto">${{ $producto->precio }}</p>
-                                <button class="Agregar_producto" id="{{ $producto->id }}">agregar</button>
+                                <form class="producto_detalles" action="{{ route('cart.add') }}" method="POST" style="margin-top: 0rem;">
+                                    @csrf
+                                    <input type="hidden" name="product_imagen" value="{{ asset('imagenes/productos/' . $producto->imagen) }}">
+                                    <input type="hidden" name="product_id" value="{{ $producto->id }}"> <!-- Aquí puedes poner el ID del producto -->
+                                    <input type="hidden" name="product_name" value="{{ $producto->titulo }}"> <!-- Nombre del producto -->
+                                    <input class="precio producto" type="hidden" name="product_price" value="{{ $producto->precio }}"> <!-- Precio unitario del producto -->
+                                    <button class="Agregar_producto" type="submit">Agregar</button>
+                                </form>
                             </div>
                         
                 </div>
@@ -91,6 +105,39 @@
     </div>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!-- <script src="main.js"></script> -->
+    <script>
+        const productos = document.querySelectorAll('.card-producto');
+        const botonesCategorias = document.querySelectorAll(".boton_categoria");
+        const tituloPrincipal = document.getElementById("titulo-principal");
+        botonesCategorias.forEach((boton) => {
+            let categoria = boton.id;
+            boton.addEventListener('click', (e) => {
+                botonesCategorias.forEach(boton => boton.classList.remove("active"));
+                e.currentTarget.classList.add("active");
+                if (categoria === 'todos') {
+                    tituloPrincipal.innerText = "Todos los Productos";
+                    productos.forEach(producto => {
+                        producto.style.display = 'block';
+                    });
+                } else {
+                    mostrarProductos(categoria);
+                    tituloPrincipal.innerText = (categoria);
+                }
+            });                  
+        });
+
+        function mostrarProductos(categoria) {
+            productos.forEach(producto => {
+                let productoCategoria = producto.dataset.categoria;
+                if (productoCategoria === categoria) {
+                    producto.style.display = 'block';
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+        }
+
+    </script>
    
 </body>
 </html>

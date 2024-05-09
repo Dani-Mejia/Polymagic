@@ -107,6 +107,43 @@ input[type="text"]:focus {
     margin-top: 1rem;
 }
 
+.cerrar-sesion {
+    background-color: #DC2626;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.cerrar-sesion:hover {
+    background-color: #B91C1C;
+}
+
+.cuentaE {
+    display: inline-block;
+    background-color: #10B981;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 10px;
+
+}
+
+.cuentaE:hover {
+    background-color: #059669;
+}
+
+.User{
+    color: #707070;
+    font-weight: 600;
+    margin-left: 1rem;
+}
+
 .numerito {
     background-color: white;
     color: #f79aa4;
