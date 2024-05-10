@@ -46,7 +46,7 @@ class produccontroller extends Controller
         if ($request->hasFile('imagen')) {
             $imagen = $request->file('imagen');
             $nombre_imagen = time().'.'.$imagen->getClientOriginalExtension();
-            $ruta_imagen = public_path('imagenes/productos');
+            $ruta_imagen = public_path('Imagenes/productos');
             $imagen->move($ruta_imagen, $nombre_imagen);
             $producto->imagen = $nombre_imagen;
         }
