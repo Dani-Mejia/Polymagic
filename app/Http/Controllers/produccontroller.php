@@ -35,6 +35,7 @@ class produccontroller extends Controller
         $request->validate([
             'titulo' => 'required|string|max:255',
             'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajusta los formatos y el tamaño según tus necesidades
+            'categoria_id' => 'required|',
             'precio' => 'required|numeric|min:0',
         ]);
 
@@ -51,6 +52,7 @@ class produccontroller extends Controller
             $producto->imagen = $nombre_imagen;
         }
 
+        $producto->categoria_id = $request->categoria_id;
         $producto->precio = $request->precio;
         $producto->save();
 
