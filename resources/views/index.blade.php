@@ -82,13 +82,13 @@
             <h2 class="Titulo_productos" id="titulo-principal">Todos los Productos</h2>
             <div id="contenedor_productos" class="Contenedor_productos">
                 @foreach ($productos as $producto)                <div class="producto card-producto" data-categoria="{{ $producto->categoria->nombre }}">
-                    <img class="imagen_producto" src="{{ asset('imagenes/productos/' . $producto->imagen) }}" alt="Collar perlas Carita feliz">
+                    <img class="imagen_producto" src="{{ asset('Imagenes/productos/' . $producto->imagen) }}" alt="Collar perlas Carita feliz">
                             <div class="producto_detalles">
-                                <h3 class="titulo_producto">{{ $producto->titulo }}</h3>
+                                <h3 class="titulo_producto" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="{{ $producto->titulo }}">{{ $producto->titulo }}</h3>
                                 <p class="precio producto">${{ $producto->precio }}</p>
                                 <form class="producto_detalles" action="{{ route('cart.add') }}" method="POST" style="margin-top: 0rem;">
                                     @csrf
-                                    <input type="hidden" name="product_imagen" value="{{ asset('imagenes/productos/' . $producto->imagen) }}">
+                                    <input type="hidden" name="product_imagen" value="{{ asset('Imagenes/productos/' . $producto->imagen) }}">
                                     <input type="hidden" name="product_id" value="{{ $producto->id }}"> <!-- Aquí puedes poner el ID del producto -->
                                     <input type="hidden" name="product_name" value="{{ $producto->titulo }}"> <!-- Nombre del producto -->
                                     <input class="precio producto" type="hidden" name="product_price" value="{{ $producto->precio }}"> <!-- Precio unitario del producto -->

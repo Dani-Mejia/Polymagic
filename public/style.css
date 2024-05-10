@@ -151,7 +151,7 @@ input[type="text"]:focus {
     border-radius: .25rem;
 }
 
-.boton_carrito.active .numerito {
+.boton_rito.active .numerito {
     background-color: #db8fee;
     color: white;
 }
@@ -210,6 +210,11 @@ main {
     display: flex;
     flex-direction: column;
     gap: .25rem; 
+}
+
+.card-producto {
+    min-width: 14rem;
+    max-width: 14rem;
 }
 
 .titulo_producto {

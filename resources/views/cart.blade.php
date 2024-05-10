@@ -43,7 +43,7 @@
 
                             @foreach(session('cart') as $item)
                             <div class="carrito_producto">
-                            <img class="carrito-producto-imagen" src="{{ asset('imagenes/productos/' . $item['imagen']) }}" alt="">
+                            <img class="carrito-producto-imagen" src="{{ asset('Imagenes/productos/' . $item['imagen']) }}" alt="">
                             <div class="carrito_producto_titulo">
                                 <small>titulo</small>
                                 <h3>{{ $item['nombre'] }}</h3>

@@ -90,7 +90,7 @@
                                     <tr>
                                         <td>{{ $producto->id }}</td>
                                         <td>{{ $producto->titulo }}</td>
-                                        <td><img src="{{ asset('imagenes/productos/' . $producto->imagen) }}" alt="{{ $producto->titulo }}" style="max-width: 100px;"></td>
+                                        <td><img src="{{ asset('Imagenes/productos/' . $producto->imagen) }}" alt="{{ $producto->titulo }}" style="max-width: 100px;"></td>
                                         <td>${{ $producto->precio }}</td>
                                     </tr>
                                 @endforeach
