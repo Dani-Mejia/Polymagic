@@ -80,7 +80,35 @@
             </footer>
         </aside>
         <main>
-        <div class="Encabezado">
+            <style>
+                .Encabezado {
+    display: flex; /* Utilizar flexbox */
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center; /* Alinear verticalmente al centro */
+    margin-bottom: 2rem;
+}
+
+.Titulo_productos {
+    margin: 0; /* Eliminar el margen del título */
+}
+
+.Boton_derecha {
+    margin-left: auto; /* Empujar el botón hacia la derecha */
+}
+
+.administrar-producto {
+    padding: 5px 10px; /* Ajusta el padding según sea necesario */
+    background-color: #db8fee; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    border-radius: 5px; /* Borde redondeado */
+}
+
+.administrar-producto:hover {
+    background-color: #9c30ba; /* Color de fondo del botón al pasar el mouse */
+}
+            </style>
+        <div class="Encabezado" >
     <h2 class="Titulo_productos" id="titulo-principal">Todos los Productos</h2>
     <div class="Boton_derecha">
     @if (Auth::check() && Auth::user()->name === 'Admin')
