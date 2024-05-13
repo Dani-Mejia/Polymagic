@@ -84,6 +84,12 @@ p {
     padding: 10px;
 }
 
+
+.card-body {
+    overflow-y: auto; /* Hacer la tabla desplazable verticalmente */
+    max-height: 300px; /* Altura máxima de la tabla */
+}
+
 .card-body {
     padding: 20px;
 }
