@@ -84,7 +84,7 @@
     <h2 class="Titulo_productos" id="titulo-principal">Todos los Productos</h2>
     <div class="Boton_derecha">
     @if (Auth::check() && Auth::user()->name === 'Admin')
-            <a href="{{ route('productos.crear') }}" class="agregar-producto">
+            <a href="{{ route('productos.crear') }}" class="administrar-producto">
                 Administrar productos
             </a>
         @endif

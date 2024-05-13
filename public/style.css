@@ -205,7 +205,7 @@ main {
     margin-left: auto; /* Empujar el botón hacia la derecha */
 }
 
-.agregar-producto {
+.administrar-producto {
     padding: 5px 10px; /* Ajusta el padding según sea necesario */
     background-color: #db8fee; /* Color de fondo del botón */
     color: white; /* Color del texto del botón */
@@ -213,7 +213,7 @@ main {
     border-radius: 5px; /* Borde redondeado */
 }
 
-.agregar-producto:hover {
+.administrar-producto:hover {
     background-color: #9c30ba; /* Color de fondo del botón al pasar el mouse */
 }
 
