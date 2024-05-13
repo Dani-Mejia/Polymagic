@@ -15,6 +15,12 @@
             <div class="card">
                 <div class="card-header">Agregar Producto</div>
 
+                <style>
+                .card-body {
+                    overflow-y: auto; /* Hacer la tabla desplazable verticalmente */
+                    max-height: 300px; /* Altura máxima de la tabla */
+                             }
+                </style>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
