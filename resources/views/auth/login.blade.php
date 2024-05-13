@@ -17,6 +17,7 @@
         <a href="{{route('registro')}}">
         Registrate
     </a>
+    <a href="{{ route('home') }}" class="back-button">&larr; Volver al inicio</a>
     </form>
  
 </body>

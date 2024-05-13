@@ -17,9 +17,7 @@
                 <img src="Imagenes/polymagic.png" alt="" class="logo">
             </header>
             <div class="search-container">
-                <form action="/search" method="GET">
                     <input type="text" placeholder="Buscar..." name="q" id="search-input">
-                </form>
             </div>
         </body>
 
@@ -63,6 +61,9 @@
             </nav>
             @if (Auth::check())
             <p class="User">{{ Auth::user()->name }}</p>
+
+
+
             <form action="{{ route('logout') }}" method="POST" class="block">
                 @csrf
                 <button type="submit" class="cerrar-sesion">
@@ -79,7 +80,16 @@
             </footer>
         </aside>
         <main>
-            <h2 class="Titulo_productos" id="titulo-principal">Todos los Productos</h2>
+        <div class="Encabezado">
+    <h2 class="Titulo_productos" id="titulo-principal">Todos los Productos</h2>
+    <div class="Boton_derecha">
+    @if (Auth::check() && Auth::user()->name === 'Admin')
+            <a href="{{ route('productos.crear') }}" class="agregar-producto">
+                Administrar productos
+            </a>
+        @endif
+    </div>
+</div>
             <div id="contenedor_productos" class="Contenedor_productos">
                 @foreach ($productos as $producto)                <div class="producto card-producto" data-categoria="{{ $producto->categoria->nombre }}">
                     <img class="imagen_producto" src="{{ asset('Imagenes/productos/' . $producto->imagen) }}" alt="Collar perlas Carita feliz">
@@ -136,6 +146,46 @@
                 }
             });
         }
+
+        // Función para realizar la búsqueda en tiempo real
+    document.getElementById("search-input").addEventListener("input", function() {
+        // Obtener el valor del campo de búsqueda
+        var searchText = this.value.toLowerCase().trim();
+        
+        // Obtener todas las tarjetas de productos
+        var productos = document.querySelectorAll('.card-producto');
+
+        // Iterar sobre todas las tarjetas de productos
+        productos.forEach(function(producto) {
+            // Obtener el título del producto en la tarjeta
+            var titulo = producto.querySelector('.titulo_producto').textContent.toLowerCase();
+
+            // Verificar si el título del producto coincide con el texto de búsqueda
+            if (titulo.includes(searchText)) {
+                // Si coincide, mostrar la tarjeta del producto
+                producto.style.display = 'block';
+            } else {
+                // Si no coincide, ocultar la tarjeta del producto
+                producto.style.display = 'none';
+            }
+        });
+    });
+
+     // Evitar que la página se recargue al presionar "Enter"
+     document.getElementById("search-input").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+        }
+
+        // Cambiar el botón de categoría activo a "Todos los productos"
+        document.getElementById('todos').classList.add('active');
+        document.querySelectorAll('.boton_categoria').forEach(function(boton) {
+            if (boton.id !== 'todos') {
+                boton.classList.remove('active');
+                tituloPrincipal.innerText = "Todos los Productos";
+            }
+        });
+    });
 
     </script>
    

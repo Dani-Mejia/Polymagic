@@ -83,6 +83,7 @@
                                     <th>Título</th>
                                     <th>Imagen</th>
                                     <th>Precio</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -92,6 +93,13 @@
                                         <td>{{ $producto->titulo }}</td>
                                         <td><img src="{{ asset('Imagenes/productos/' . $producto->imagen) }}" alt="{{ $producto->titulo }}" style="max-width: 100px;"></td>
                                         <td>${{ $producto->precio }}</td>
+                                        <td>
+                                            <form action="{{ route('productos.eliminar', $producto) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -102,6 +110,8 @@
         </div>
     </div>
 </div>
+
+<a href="{{ route('home') }}" class="back-button">&larr; Volver al inicio</a>
 
 
 </body>

@@ -90,6 +90,10 @@ class produccontroller extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+          // Eliminar el producto de la base de datos
+    $producto->delete();
+
+    // Redirigir con un mensaje de éxito
+    return redirect()->route('productos.crear')->with('success', 'Producto eliminado correctamente.');
     }
 }

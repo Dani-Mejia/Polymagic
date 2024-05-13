@@ -27,6 +27,9 @@ Route::get('/productos/crear', [App\Http\Controllers\produccontroller::class, 'i
 // Ruta para procesar el formulario y guardar el producto
 Route::post('/productos/guardar', [App\Http\Controllers\produccontroller::class, 'store'])->name('productos.guardar');
 
+// Ruta para eliminar un producto
+Route::delete('/productos/{producto}', [App\Http\Controllers\produccontroller::class, 'destroy'])->name('productos.eliminar');
+
 Route::get('/carrito', [App\Http\Controllers\cartcontroller::class, 'index'])->name('cart');
 Route::post('/add-to-cart', [App\Http\Controllers\cartcontroller::class, 'addToCart'])->name('cart.add');
 Route::post('/cobrar', [App\Http\Controllers\cartcontroller::class, 'cobrar'])->name('cobrar');

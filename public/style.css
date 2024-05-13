@@ -188,6 +188,36 @@ main {
 }
 
 
+
+
+.Encabezado {
+    display: flex; /* Utilizar flexbox */
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center; /* Alinear verticalmente al centro */
+    margin-bottom: 2rem;
+}
+
+.Titulo_productos {
+    margin: 0; /* Eliminar el margen del título */
+}
+
+.Boton_derecha {
+    margin-left: auto; /* Empujar el botón hacia la derecha */
+}
+
+.agregar-producto {
+    padding: 5px 10px; /* Ajusta el padding según sea necesario */
+    background-color: #db8fee; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    border-radius: 5px; /* Borde redondeado */
+}
+
+.agregar-producto:hover {
+    background-color: #9a2cb9; /* Color de fondo del botón al pasar el mouse */
+}
+
+
 .Contenedor_productos {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -348,4 +378,19 @@ main {
 
 .disabled {
     display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu li {
+        margin-bottom: 10px;
+    }
+
+    .menu a {
+        padding: 10px 0;
+    }
 }
