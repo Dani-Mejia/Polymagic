@@ -18,7 +18,7 @@
                 <style>
                 .card-body {
                     overflow-y: auto; /* Hacer la tabla desplazable verticalmente */
-                    max-height: 300px; /* Altura máxima de la tabla */
+                    max-height: 500px; /* Altura máxima de la tabla */
                              }
                 </style>
                 <div class="card-body">
