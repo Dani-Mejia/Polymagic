@@ -51,14 +51,14 @@
                             <div class="carrito_producto_cantidad">
                                 <small>Cantidad</small>
                                 <div>
-                                    <form action="{{ route('cart.decrement', $item['id']) }}" method="POST">
-                                        @csrf
-                                        <button type="submit">disminuir</button>
-                                    </form>
-                                    <div class="cantidad-producto">{{ $item['cantidad'] }}</div>
                                     <form action="{{ route('cart.increment', $item['id']) }}" method="POST">
                                         @csrf
-                                        <button type="submit">aumentar</button>
+                                        <button class="btn-increment" type="submit">aumentar</button>
+                                    </form>
+                                    <div class="cantidad-producto">{{ $item['cantidad'] }}</div>
+                                    <form action="{{ route('cart.decrement', $item['id']) }}" method="POST">
+                                        @csrf
+                                        <button class="btn-decrement" type="submit">disminuir</button>
                                     </form>
                                 </div>
                             </div>
@@ -105,6 +105,7 @@
                     </div>
                     @endif
                 </div>
+                
                 <p id="carrito-comprado" class="carrito_comprado disabled">Muchas gracias por tu compra. <i class="bi bi-emoji-laughing"></i></p>
             </div>
                 

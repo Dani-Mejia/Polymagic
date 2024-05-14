@@ -300,6 +300,21 @@ main {
     cursor: pointer;
 }
 
+.btn-increment,
+.btn-decrement {
+    padding: 5px 10px;
+    background-color: #ca8289;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px; /* Espacio entre botones */
+}
+
+.btn-increment:hover,
+.btn-decrement:hover {
+    background-color: #F79AA4; /* Color de fondo al pasar el mouse */
+}
 .carrito_acciones {
     display: flex;
     justify-content: space-between;
@@ -335,7 +350,7 @@ main {
 .carrito_acciones_comprar {
     border: 0;
     background-color: #f79aa4;
-    padding: 1rem;
+    padding: 1.2rem;
     color: white;
     text-transform: uppercase;
     cursor: pointer;
