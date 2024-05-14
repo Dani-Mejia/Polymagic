@@ -76,7 +76,7 @@
             </a>
             @endif
             <footer>
-                <p class="texto-footer">© 2024 Polymagic</p>
+                <p class="texto-footer">© 2024 Pollymagic</p>
             </footer>
         </aside>
         <main>
