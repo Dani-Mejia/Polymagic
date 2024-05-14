@@ -83,12 +83,12 @@
                                 <div>
                                     <form action="{{ route('cart.increment', $item['id']) }}" method="POST">
                                         @csrf
-                                        <button class="btn-increment" type="submit">aumentar</button>
+                                        <button class="btn-increment" type="submit">Aumentar</button>
                                     </form>
                                     <div class="cantidad-producto">{{ $item['cantidad'] }}</div>
                                     <form action="{{ route('cart.decrement', $item['id']) }}" method="POST">
                                         @csrf
-                                        <button class="btn-decrement" type="submit">disminuir</button>
+                                        <button class="btn-decrement" type="submit">Disminuir</button>
                                     </form>
                                 </div>
                             </div>
