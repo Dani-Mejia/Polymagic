@@ -6,6 +6,23 @@
     <link rel="stylesheet" href="{{asset('style.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Polymagic</title>
+    <style>
+        .btn-increment,
+        .btn-decrement {
+    padding: 5px 10px;
+    background-color: #ca8289;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px; /* Espacio entre botones */
+}
+
+.btn-increment:hover,
+.btn-decrement:hover {
+    background-color: #F79AA4; /* Color de fondo al pasar el mouse */
+}
+    </style>
 </head>
 <body>
     <div class="wrapper">
