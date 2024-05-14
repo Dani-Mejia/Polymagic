@@ -16,6 +16,17 @@
     border-radius: 5px;
     cursor: pointer;
     margin-right: 5px; /* Espacio entre botones */
+
+    .carrito_acciones_comprar {
+    border: 0;
+    background-color: #f79aa4;
+    padding: 1.2rem;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
 }
 
 .btn-increment:hover,
