@@ -32,6 +32,8 @@ Route::delete('/productos/{producto}', [App\Http\Controllers\produccontroller::c
 
 Route::get('/carrito', [App\Http\Controllers\cartcontroller::class, 'index'])->name('cart');
 Route::post('/add-to-cart', [App\Http\Controllers\cartcontroller::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/less/{producto_id}', [App\Http\Controllers\cartcontroller::class, 'increment'])->name('cart.increment');
+Route::post('/cart/plus/{producto_id}', [App\Http\Controllers\cartcontroller::class, 'decrement'])->name('cart.decrement');
 Route::post('/cobrar', [App\Http\Controllers\cartcontroller::class, 'cobrar'])->name('cobrar');
 Route::get('/pago/{token}/factura/{ern}', [App\Http\Controllers\cartcontroller::class, 'verificar'])->name('pagos.verificar');
 Route::post('carrito/vaciar', [App\Http\Controllers\cartcontroller::class, 'destroy'])->name('carrito.vaciar');

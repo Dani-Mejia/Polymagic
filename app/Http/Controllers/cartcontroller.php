@@ -68,7 +68,47 @@ class cartcontroller extends Pagadito
         }
 
         return redirect()->back()->with('success', 'Producto eliminado del carrito');
+
+
     }
+
+    public function increment(Request $request, $producto_id)
+{
+    $carrito = session()->get('cart', []);
+
+    if (!empty($carrito)) {
+        $indiceProducto = array_search($producto_id, array_column($carrito, 'id'));
+
+        if ($indiceProducto !== false) {
+            // Actualizar la cantidad del producto
+            $carrito[$indiceProducto]['cantidad'] +=1;
+            session()->put('cart', $carrito);
+        }
+    }
+
+    return redirect()->back();
+}
+
+public function decrement(Request $request, $producto_id)
+{
+    $carrito = session()->get('cart', []);
+
+    if (!empty($carrito)) {
+        $indiceProducto = array_search($producto_id, array_column($carrito, 'id'));
+
+        if ($indiceProducto !== false) {
+            // Actualizar la cantidad del producto
+            $carrito[$indiceProducto]['cantidad'] -=1;
+            if ($carrito[$indiceProducto]['cantidad'] <= 0) {
+                $carrito[$indiceProducto]['cantidad'] =1;
+            }
+            session()->put('cart', $carrito);
+        }
+
+    }
+
+    return redirect()->back();
+}
 
     /**
      * Remove the specified resource from storage.

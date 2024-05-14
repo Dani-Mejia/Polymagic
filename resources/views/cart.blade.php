@@ -41,7 +41,7 @@
                 
                 @if(session('cart'))
 
-                            @foreach(session('cart') as $item)
+                            @foreach(session('cart', []) as $item)
                             <div class="carrito_producto">
                             <img class="carrito-producto-imagen" src="{{ asset('Imagenes/productos/' . $item['imagen']) }}" alt="">
                             <div class="carrito_producto_titulo">
@@ -49,8 +49,18 @@
                                 <h3>{{ $item['nombre'] }}</h3>
                             </div>
                             <div class="carrito_producto_cantidad">
-                                <small>cantidad</small>
-                                <p>{{ $item['cantidad'] }}</p>
+                                <small>Cantidad</small>
+                                <div>
+                                    <form action="{{ route('cart.decrement', $item['id']) }}" method="POST">
+                                        @csrf
+                                        <button type="submit">disminuir</button>
+                                    </form>
+                                    <div class="cantidad-producto">{{ $item['cantidad'] }}</div>
+                                    <form action="{{ route('cart.increment', $item['id']) }}" method="POST">
+                                        @csrf
+                                        <button type="submit">aumentar</button>
+                                    </form>
+                                </div>
                             </div>
                             <div class="carrito_producto_precio">
                                 <small>precio</small>
@@ -117,8 +127,106 @@
             total.innerText = `$${totalCalculado.toFixed(2)}`;
         }
 
+        // Función para actualizar el subtotal y el total cuando cambia la cantidad
+    document.querySelectorAll('.cantidad-producto').forEach(function(input) {
+        input.addEventListener('input', function() {
+            // Obtener el precio unitario
+            var precioUnitario = parseFloat(this.closest('.carrito_producto').querySelector('.carrito_producto_precio p').textContent.replace('$', ''));
+
+            // Calcular el nuevo subtotal
+            var cantidad = parseFloat(this.value);
+            var subtotal = cantidad * precioUnitario;
+
+            // Actualizar el subtotal
+            this.closest('.carrito_producto').querySelector('.carrito_producto_subtotal p').textContent = '$' + subtotal.toFixed(2);
+
+            // Actualizar el total
+            var subtotales = Array.from(document.querySelectorAll('.carrito_producto_subtotal p')).map(subtotal => parseFloat(subtotal.textContent.replace('$', '')));
+            var total = subtotales.reduce((a, b) => a + b, 0);
+            document.getElementById('total').textContent = '$' + total.toFixed(2);
+
+             // Obtener el ID del producto
+             var productoID = this.closest('.carrito_producto').dataset.id;
+
+              // Actualizar la sesión del carrito
+            var cart = JSON.parse(sessionStorage.getItem('cart'));
+            var productoIndex = cart.findIndex(item => item.id === productoID);
+            cart[productoIndex].cantidad = cantidad;
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+        });
+    });
+
+    // Obtener todos los campos de cantidad
+    const camposCantidad = document.querySelectorAll('.cantidad-producto');
+
+    // Iterar sobre cada campo de cantidad
+    camposCantidad.forEach(campo => {
+        // Agregar un evento input a cada campo
+        campo.addEventListener('input', function() {
+            // Obtener el valor de la cantidad
+            const nuevaCantidad = this.value;
+
+            // Obtener la URL para enviar la solicitud AJAX
+            const url = this.parentElement.action;
+
+            // Obtener el token CSRF
+            const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            // Obtener el método de la solicitud
+            const method = 'PUT';
+
+            // Configurar los datos a enviar
+            const data = new FormData();
+            data.append('_token', token);
+            data.append('_method', method);
+            data.append('cantidad', nuevaCantidad);
+
+            // Configurar la solicitud AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.open(method, url, true);
+            xhr.setRequestHeader('X-CSRF-Token', token);
+
+            // Enviar la solicitud con los datos
+            xhr.send(data);
+        });
+    });
+
+    // Agrega este código en el script en tu vista cart.blade.php
+
+    document.querySelectorAll('.cantidad-producto').forEach(input => {
+    input.addEventListener('change', function() {
+        const productId = this.getAttribute('data-product-id');
+        const newQuantity = parseInt(this.value);
+
+        fetch(`/cart/${productId}`, {
+            method: 'PUT',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                cantidad: newQuantity
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Actualizar subtotal y total en la vista si es necesario
+            } else {
+                console.error(data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+});
+
         // Llamar a la función para actualizar el total inicialmente
         actualizarTotal();
+
+
 
     </script>
     <!-- <script src="carrito.js"></script> -->

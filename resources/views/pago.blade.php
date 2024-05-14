@@ -7,6 +7,9 @@
 </head>
 <body>
 {{ $estado }}
+@php
+
+@endphp
     
 </body>
 </html>
