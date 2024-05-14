@@ -17,7 +17,15 @@
     cursor: pointer;
     margin-right: 5px; /* Espacio entre botones */
 
-    .carrito_acciones_comprar {
+    
+}
+
+.btn-increment:hover,
+.btn-decrement:hover {
+    background-color: #F79AA4; /* Color de fondo al pasar el mouse */
+}
+
+.carrito_acciones_comprar {
     border: 0;
     background-color: #f79aa4;
     padding: 1.2rem;
@@ -26,12 +34,6 @@
     cursor: pointer;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
-}
-}
-
-.btn-increment:hover,
-.btn-decrement:hover {
-    background-color: #F79AA4; /* Color de fondo al pasar el mouse */
 }
     </style>
 </head>
