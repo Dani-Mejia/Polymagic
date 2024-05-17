@@ -8,12 +8,94 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Polymagic</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <style>
+        .logo {
+    font-weight: 400;
+    font-size: 1.3rem;
+    }
+
+    /*** MEDIA QUERIES ***/
+@media screen and (max-width: 600px){
+    
+    .wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    aside {
+        position: fixed;
+        z-index: 9;
+        background: rgba(189,228,220,1);
+        left: 0;
+        box-shadow: 0 0 0  100vmax rgba(0, 0, 0, .75);
+        transform: translateX(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: .2s;
+
+    }
+
+    .aside-visible {
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    main{
+        margin: 1rem;
+        margin-top: 0;
+        padding: 1rem;
+    }
+
+    .Contenedor_productos {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .header-mobile{
+        display: flex;
+        padding: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+
+     .header-mobile .logo{
+        color: #f79aa4;
+     }
+
+     .open-menu , .close-menu{
+        background-color: transparent;
+        color: white;
+        border: 0;
+        font-size: 2rem;
+        cursor: pointer;
+
+     }
+
+     .close-menu {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
+}
+    </style>
 </head>
 <body>
     <div class="wrapper">
-        <aside>
+            <header class="header-mobile">
+                    <h1 class="logo">Pollymagic</h1>
+                    <button class="open-menu" id="open-menu">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </header>
+            <aside>
+            <button class="close-menu" id="close-menu">
+                <i class="bi bi-x"></i>
+            </button>
             <header>
-
                 <img src="Imagenes/polymagic.png" alt="" class="logo">
             </header>
             <div class="search-container">
@@ -144,6 +226,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!-- <script src="main.js"></script> -->
     <script>
+
+
         const productos = document.querySelectorAll('.card-producto');
         const botonesCategorias = document.querySelectorAll(".boton_categoria");
         const tituloPrincipal = document.getElementById("titulo-principal");
@@ -214,6 +298,29 @@
             }
         });
     });
+        const openMenu = document.querySelector("#open-menu");
+        const closeMenu = document.querySelector("#close-menu");
+        const aside = document.querySelector("aside");
+
+        openMenu.addEventListener("click", () => {
+            aside.classList.add("aside-visible");
+        })
+
+        closeMenu.addEventListener("click", () => {
+            aside.classList.remove("aside-visible");
+        })
+
+
+        document.addEventListener("click", (event) => {
+    if (!aside.contains(event.target) && !openMenu.contains(event.target)) {
+        aside.classList.remove("aside-visible");
+    }
+});
+
+
+        botonesCategorias.foreach(boton => boton.addEventListener("click", () =>{
+            aside.classList.remove("aside-visible");   
+        }))
 
     </script>
    

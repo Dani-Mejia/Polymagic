@@ -39,7 +39,16 @@
 </head>
 <body>
     <div class="wrapper">
+            <header class="header-mobile">
+                    <h1 class="logo">Pollymagic</h1>
+                    <button class="open-menu" id="open-menu">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </header>
         <aside>
+        <button class="close-menu" id="close-menu">
+                <i class="bi bi-x"></i>
+            </button>
             <header>
 
                 <img src="Imagenes/polymagic.png" alt="" class="logo">
@@ -61,7 +70,7 @@
 
             </nav>
             <footer>
-                <p class="texto-footer">© 2024 Polymagic</p>
+                <p class="texto-footer">© 2024 Pollymagic</p>
             </footer>
         </aside>
         <main>
@@ -143,6 +152,24 @@
     </div>
 
     <script>
+        const openMenu = document.querySelector("#open-menu");
+        const closeMenu = document.querySelector("#close-menu");
+        const aside = document.querySelector("aside");
+
+        openMenu.addEventListener("click", () => {
+            aside.classList.add("aside-visible");
+        })
+
+        closeMenu.addEventListener("click", () => {
+            aside.classList.remove("aside-visible");
+        })
+
+        document.addEventListener("click", (event) => {
+    if (!aside.contains(event.target) && !openMenu.contains(event.target)) {
+        aside.classList.remove("aside-visible");
+    }
+});
+
         // Obtener el elemento del total
         const total = document.getElementById('total');
 
