@@ -37,32 +37,6 @@
         .back-button:hover {
             background-color: #0056b3;
         }
-        .receipt {
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #fff;
-            max-width: 600px;
-            text-align: left;
-        }
-        .receipt h2 {
-            margin-top: 0;
-        }
-        .receipt table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .receipt table, .receipt th, .receipt td {
-            border: 1px solid #ddd;
-        }
-        .receipt th, .receipt td {
-            padding: 8px;
-            text-align: left;
-        }
-        .receipt tfoot td {
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
@@ -70,37 +44,6 @@
         <div class="message success">
             <h1>¡Pago realizado con éxito!</h1>
             <p>Tu compra se ha realizado. Gracias por comprar.</p>
-        </div>
-        <div class="receipt">
-            <h2>Detalles de la Compra</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($productos as $producto)
-                        <tr>
-                            <td>{{ $producto['nombre'] }}</td>
-                            <td>{{ $producto['cantidad'] }}</td>
-                            <td>${{ number_format($producto['precio_unitario'], 2) }}</td>
-                            <td>${{ number_format($producto['cantidad'] * $producto['precio_unitario'], 2) }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3">Total</td>
-                        <td>${{ number_format(array_sum(array_map(function($producto) {
-                            return $producto['cantidad'] * $producto['precio_unitario'];
-                        }, $productos)), 2) }}</td>
-                    </tr>
-                </tfoot>
-            </table>
         </div>
     @else
         <div class="message failure">
