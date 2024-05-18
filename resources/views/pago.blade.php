@@ -43,7 +43,7 @@
     @if($estado === 'COMPLETED')
         <div class="message success">
             <h1>¡Pago realizado con éxito!</h1>
-            <p>Tu compra se ha realizado. Gracias por comprar.</p>
+            <p>Tu compra se ha realizado, revisa tu correo para verificar tu recibo. Gracias por comprar.</p>
         </div>
     @else
         <div class="message failure">
