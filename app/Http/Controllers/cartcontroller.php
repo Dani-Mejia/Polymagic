@@ -110,6 +110,8 @@ public function decrement(Request $request, $producto_id)
     return redirect()->back();
 }
 
+
+
     /**
      * Remove the specified resource from storage.
      */
@@ -151,6 +153,7 @@ public function decrement(Request $request, $producto_id)
                     // if ($compra) {
                     //     $compra->update(['estado' => 'COMPLETADO']);
                     // }
+                    session()->forget('cart');
                     return view('pago', compact('estado'));
                 } else {
                     // Si el estado es distinto
