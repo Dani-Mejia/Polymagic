@@ -428,6 +428,26 @@ main {
         visibility: visible;
     }
 
+    aside {
+        padding: 1rem; /* Aumenta el padding para dispositivos móviles */
+    }
+
+    aside header {
+        margin-top: 4rem; /* Añade más espacio superior en móviles */
+    }
+
+    
+aside .logo {
+    max-width: 100%;
+    height: auto;
+    margin-top: -2rem;
+}
+
+    aside .close-menu {
+        top: 1rem;
+        right: 1rem; /* Ajusta la posición del botón de cerrar */
+    }
+
     main {
         margin: 1rem;
         margin-top: 0;

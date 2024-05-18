@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Polymagic</title>
     <style>
+
+@media screen and (max-width: 600px) {
+    aside .logo {
+    max-width: 100%;
+    height: auto;
+    margin-top: -2rem;
+    margin-right: 3rem;
+    }
+}
+
         .btn-increment,
         .btn-decrement {
     padding: 5px 10px;
@@ -40,7 +50,7 @@
 <body>
     <div class="wrapper">
             <header class="header-mobile">
-                    <h1 class="logo">Pollymagic</h1>
+                    <h1 class="logo"></h1>
                     <button class="open-menu" id="open-menu">
                         <i class="bi bi-list"></i>
                     </button>
